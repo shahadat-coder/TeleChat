@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:telechat/core/services/shared_services.dart';
 import 'package:telechat/views/auth/login/login.dart';
+import 'package:telechat/views/home/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,10 +16,21 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    print(SharedServices.getData(SetType.string, 'token'));
    Timer(const Duration(seconds: 3), () {
-     Get.offAll(()=>const LoginScreen());
+     checkToken();
    });
     super.initState();
+  }
+
+  checkToken()async{
+    final token = await SharedServices.getData(SetType.string, 'token');
+
+    if(token !=null){
+      Get.offAll(()=>const MyHomePage());
+    }else{
+      Get.offAll(()=>const LoginScreen());
+    }
   }
 
 
