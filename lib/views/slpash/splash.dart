@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final token = await SharedServices.getData(SetType.string, 'token');
 
     if(token !=null){
-      Get.offAll(()=>const MyHomePage());
+      Get.offAll(()=>const HomeScreen());
     }else{
       Get.offAll(()=>const LoginScreen());
     }

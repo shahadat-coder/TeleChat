@@ -98,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   label: 'Date of Birth',
                   hintText: 'yyyy-mm-dd',
                   onChanged: (value) {
-                    controller.userModel.value.dateofBirth = value;
+                    controller.userModel.value.dateOfBirth = value;
                   },
                 ),
                 const SizedBox(

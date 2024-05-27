@@ -1,35 +1,46 @@
-class UserModel{
-   String? email;
-   String? name;
-   String? phone;
-   String? dateofBirth;
-   String? password;
-   String? profilePicture;
+class UserModel {
+  int? id;
+  String? email;
+  String? name;
+  String? phone;
+  String? dateOfBirth;
+  String? password;
+  String? profilePicture;
 
   UserModel({
-     this.email,
-     this.dateofBirth,
-     this.name,
-     this.phone,
-     this.password,
-     this.profilePicture
-});
+    this.id,
+    this.email,
+    this.name,
+    this.phone,
+    this.dateOfBirth,
+    this.password,
+    this.profilePicture,
+  });
 
-  Map<String,dynamic> toRegister(){
+  Map<String, dynamic> toRegister () {
     return {
       'name' : name,
       'phone' : phone,
-      'email' : email,
       'password' : password,
-      'date_of_birth' : dateofBirth,
-      'profile_picture': profilePicture,
-    };
-  }
-  Map<String,dynamic> toLogin(){
-    return {
+      'date_of_birth' : dateOfBirth,
       'email' : email,
-      'password' : password,
+      'profile_picture' : profilePicture,
     };
   }
 
+  Map<String, dynamic> toLogin () {
+    return {
+      'password' : password,
+      'email' : email,
+    };
+  }
+
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+    id: json["id"],
+    name: json["name"],
+    email: json["email"],
+    phone: json["phone"],
+    profilePicture: json["profile_picture"],
+    dateOfBirth: json["date_of_birth"],
+  );
 }

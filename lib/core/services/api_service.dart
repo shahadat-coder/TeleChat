@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart'as http;
+import 'package:telechat/helpers/token_helper.dart';
 import 'package:telechat/models/user_model.dart';
 import 'package:telechat/utils/endPoint.dart';
 
@@ -14,7 +15,7 @@ class ApiServices{
       'phone' : data.phone!,
       'name'  : data.name!,
       'password' : data.password!,
-      'date_of_birth' : data.dateofBirth!,
+      'date_of_birth' : data.dateOfBirth!,
     });
 
     request.files.add(
@@ -39,6 +40,16 @@ class ApiServices{
         'Accept': 'application/json',
       },
       body: data.toString(),
+    );
+  }
+
+  static Future<http.Response> getUsers()async{
+    return await http.get(
+      ApiEndpoints.users,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization' : await authToken()
+      },
     );
   }
 }

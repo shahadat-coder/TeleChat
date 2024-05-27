@@ -40,7 +40,7 @@ register () async {
  final decode = jsonDecode(await response.stream.bytesToString());
  await SharedServices.setData(SetType.string, 'token', decode['token']);
 
- Get.offAll(()=> const MyHomePage());
+ Get.offAll(()=> const HomeScreen());
 }
 
 login() async{
@@ -58,7 +58,7 @@ login() async{
 
   await SharedServices.setData(SetType.string, 'token', decode['token']);
 
-  Get.offAll(()=>const MyHomePage());
+  Get.offAll(()=>const HomeScreen());
 }
 
 }
