@@ -1,4 +1,6 @@
 import 'package:chatting_app/controllers/auth_controller.dart';
+import 'package:chatting_app/utils/colors.dart';
+import 'package:chatting_app/views/auth/register_screen.dart';
 import 'package:chatting_app/widgets/custom_button.dart';
 import 'package:chatting_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +16,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-
     final controller = Get.put(AuthController());
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: SafeArea(
               child: Center(
             child: Column(
@@ -33,36 +34,43 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 100,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
-                    'Sign In',
+                const Text(
+                  'Sign In',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 30,
                   ),
-        
                 ),
                 Text(
-                    'Please enter your details to continue with account',
+                  'Please enter your details to continue with account',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black.withOpacity(.5),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                const CustomTextField(label: 'Email Address',
-                  hintText: 'enter your email address',),
-                SizedBox(
+                CustomTextField(
+                  label: 'Email Address',
+                  hintText: 'enter your email address',
+                  onChanged: (value) {
+                    controller.userModel.value.email = value;
+                  },
+                ),
+                const SizedBox(
                   height: 15,
                 ),
-                 Obx(
+                Obx(
                   () => CustomTextField(
                     label: 'Password',
                     hintText: 'enter your password',
+                    onChanged: (value) {
+                      controller.userModel.value.password = value;
+                    },
                     isSecured: controller.isSecured.value,
                     trailing: IconButton(
                         onPressed: () {
@@ -74,12 +82,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             : Icons.visibility)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-
-                CustomButton(label: 'LogIn'),
-        
+                const CustomButton(label: 'LogIn'),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextButton(
+                    onPressed: () => Get.to(() => const RegisterScreen()),
+                    child: Text(
+                      'CREATE A NEW ACCOUNT',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.primary.withOpacity(0.5)),
+                    )),
               ],
             ),
           )),

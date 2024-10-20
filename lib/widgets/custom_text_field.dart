@@ -6,11 +6,21 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool? isSecured;
   final Widget? trailing;
-  const CustomTextField({super.key, required this.label, required this.hintText, this.isSecured, this.trailing,});
+  final void Function(String)? onChanged;
+
+  const CustomTextField({
+    super.key,
+    required this.label,
+    required this.hintText,
+    this.isSecured,
+    this.trailing,
+    this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       obscureText: isSecured == true ? true : false,
      decoration: InputDecoration(
        enabledBorder: OutlineInputBorder(
