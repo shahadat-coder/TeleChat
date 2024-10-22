@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:chatting_app/core/services/shared_services.dart';
 import 'package:chatting_app/views/auth/LoginScreen.dart';
+import 'package:chatting_app/views/home/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,8 +19,18 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 5),(){
-      Get.offAll(()=> const LoginScreen());
+      checkToken();
     });
+  }
+
+  checkToken () async {
+    final token = await SharedServices.getData(SetType.string, 'token');
+
+    if(token != null){
+      Get.offAll(()=> const HomeScreen());
+    }else{
+      Get.offAll(()=> const LoginScreen());
+    }
   }
 
   @override

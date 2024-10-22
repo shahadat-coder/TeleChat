@@ -124,7 +124,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(
                     height: 30,
                   ),
-                  const CustomButton(label: 'Sign Up'),
+                   Obx(()=> CustomButton(label: controller.isLoading.value ? 'Loading' : 'Sign Up',
+                     onTap: ()=> controller.register(),
+                   ),),
+
                 ],
               ),
             ),

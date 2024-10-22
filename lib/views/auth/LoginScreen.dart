@@ -85,7 +85,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                const CustomButton(label: 'LogIn'),
+                Obx(()=>  CustomButton(label: controller.isLoading.value ? 'Loading...' : 'LogIn',
+                  onTap: ()=> controller.login(),
+                ),),
                 const SizedBox(
                   height: 15,
                 ),
