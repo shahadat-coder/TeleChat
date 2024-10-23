@@ -1,4 +1,3 @@
-import 'package:chatting_app/views/auth/LoginScreen.dart';
 import 'package:chatting_app/views/splash_screen/Splash_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
